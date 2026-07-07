@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 export default function Rules() {
   const sections = [
     {
@@ -53,6 +55,12 @@ export default function Rules() {
     }
   ]
 
+  const [openIdx, setOpenIdx] = useState<number | null>(null)
+
+  const toggle = (idx: number) => {
+    setOpenIdx(prev => prev === idx ? null : idx)
+  }
+
   return (
     <div className="section-sm">
       <div className="sec-title">Laws & Rules</div>
@@ -65,9 +73,9 @@ export default function Rules() {
       </div>
 
       {sections.map((section, idx) => (
-        <div key={idx} style={{ marginBottom: '28px' }}>
-          <div className="accordion open">
-            <button className="acc-btn">
+        <div key={idx} style={{ marginBottom: '12px' }}>
+          <div className={`accordion ${openIdx === idx ? 'open' : ''}`}>
+            <button className="acc-btn" onClick={() => toggle(idx)}>
               <span className="acc-title">{section.title}</span>
               <span className="acc-icon">▼</span>
             </button>

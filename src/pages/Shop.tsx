@@ -207,7 +207,7 @@ export default function Shop() {
           <p style={{ color: '#555', fontSize: '13px', textAlign: 'center', marginBottom: '24px', lineHeight: 1.7 }}>
             Already have a rank? Upgrade and only pay the difference. You must own the previous rank.
           </p>
-          <div className="upg-row" style={{ borderLeft: '4px solid #1abc9c' }}>
+          <div className="upg-row upg-teal" style={{ borderLeft: '4px solid #1abc9c' }}>
             <div className="upg-from" style={{ color: '#b8860b' }}>VIP</div>
             <div className="upg-arrow">→</div>
             <div className="upg-to" style={{ color: '#1abc9c' }}>VIP+</div>
@@ -218,7 +218,7 @@ export default function Shop() {
               <button className="btn-upg" style={{ background: '#1abc9c', color: '#fff' }} onClick={() => handleAddToCart('VIP→VIP+ Upgrade', 5, 'upg-vip-vipp', 'vip')}>Add to Cart</button>
             </div>
           </div>
-          <div className="upg-row" style={{ borderLeft: '4px solid #9b59b6' }}>
+          <div className="upg-row upg-purple" style={{ borderLeft: '4px solid #9b59b6' }}>
             <div className="upg-from" style={{ color: '#1abc9c' }}>VIP+</div>
             <div className="upg-arrow">→</div>
             <div className="upg-to" style={{ color: '#9b59b6' }}>MVP</div>
@@ -229,7 +229,7 @@ export default function Shop() {
               <button className="btn-upg" style={{ background: '#9b59b6', color: '#fff' }} onClick={() => handleAddToCart('VIP+→MVP Upgrade', 5, 'upg-vipp-mvp', 'vip-plus')}>Add to Cart</button>
             </div>
           </div>
-          <div className="upg-row" style={{ borderLeft: '4px solid #e74c3c' }}>
+          <div className="upg-row upg-gradient" style={{ borderLeft: '4px solid #e74c3c' }}>
             <div className="upg-from" style={{ color: '#9b59b6' }}>MVP</div>
             <div className="upg-arrow">→</div>
             <div className="upg-to" style={{ color: '#e74c3c' }}>MVP+</div>
@@ -249,7 +249,7 @@ export default function Shop() {
           <p style={{ color: '#555', fontSize: '13px', textAlign: 'center', marginBottom: '24px', lineHeight: 1.7 }}>
             Vault upgrades increase your in-game storage. Purchase tiers in order.
           </p>
-          <div className="upg-row" style={{ borderLeft: '4px solid #3498db' }}>
+          <div className="upg-row upg-blue" style={{ borderLeft: '4px solid #3498db' }}>
             <div className="upg-from" style={{ color: '#3498db', fontSize: '13px' }}>15 Slots</div>
             <div className="upg-arrow">📦</div>
             <div className="upg-info"><p>Expand storage to 15 slots.</p></div>
@@ -259,7 +259,7 @@ export default function Shop() {
               <button className="btn-upg" style={{ background: '#3498db', color: '#fff' }} onClick={() => handleAddToCart('Vault — 15 Slots', 10, 'vault-15', null)}>Add to Cart</button>
             </div>
           </div>
-          <div className="upg-row" style={{ borderLeft: '4px solid #2ecc71' }}>
+          <div className="upg-row upg-green" style={{ borderLeft: '4px solid #2ecc71' }}>
             <div className="upg-from" style={{ color: '#2ecc71', fontSize: '13px' }}>20 Slots</div>
             <div className="upg-arrow">📦</div>
             <div className="upg-info"><p>Expand to 20 slots. Requires 15-slot upgrade.</p></div>
@@ -269,7 +269,7 @@ export default function Shop() {
               <button className="btn-upg" style={{ background: '#2ecc71', color: '#fff' }} onClick={() => handleAddToCart('Vault — 20 Slots', 15, 'vault-20', 'vault-15')}>Add to Cart</button>
             </div>
           </div>
-          <div className="upg-row" style={{ borderLeft: '4px solid #9b59b6' }}>
+          <div className="upg-row upg-purple" style={{ borderLeft: '4px solid #9b59b6' }}>
             <div className="upg-from" style={{ color: '#9b59b6', fontSize: '13px' }}>25 Slots</div>
             <div className="upg-arrow">📦</div>
             <div className="upg-info"><p>Expand to 25 slots. Requires 20-slot upgrade.</p></div>
@@ -279,7 +279,7 @@ export default function Shop() {
               <button className="btn-upg" style={{ background: '#9b59b6', color: '#fff' }} onClick={() => handleAddToCart('Vault — 25 Slots', 20, 'vault-25', 'vault-20')}>Add to Cart</button>
             </div>
           </div>
-          <div className="upg-row" style={{ borderLeft: '4px solid #C8A040' }}>
+          <div className="upg-row upg-gold" style={{ borderLeft: '4px solid #C8A040' }}>
             <div className="upg-from" style={{ color: '#C8A040', fontSize: '13px' }}>30 Slots</div>
             <div className="upg-arrow">📦</div>
             <div className="upg-info"><p>Maximum vault size. Requires 25-slot upgrade.</p></div>

@@ -15,6 +15,13 @@ export default function Layout() {
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [accountModalOpen, setAccountModalOpen] = useState(false)
   const [cartModalOpen, setCartModalOpen] = useState(false)
+  const [copied, setCopied] = useState<'ip' | 'port' | null>(null)
+
+  const handleCopy = (text: string, field: 'ip' | 'port') => {
+    navigator.clipboard.writeText(text)
+    setCopied(field)
+    setTimeout(() => setCopied(null), 2000)
+  }
 
   useEffect(() => {
     setMobileNavOpen(false)
@@ -59,16 +66,20 @@ export default function Layout() {
 
       <div className="ip-bar">
         <span className="ip-lbl">🎮 Server</span>
-        <div className="ip-chip" onClick={() => navigator.clipboard.writeText('0.0.0.0')}>
+        <div className="ip-chip" onClick={() => handleCopy('0.0.0.0', 'ip')}>
           <span className="ip-chip-lbl">IP</span>
           <span className="ip-chip-val">0.0.0.0</span>
-          <span className="ip-chip-hint">Copy</span>
+          <span className={`ip-chip-hint ${copied === 'ip' ? 'ip-copied' : ''}`}>
+            {copied === 'ip' ? '✓' : 'Copy'}
+          </span>
         </div>
         <div className="ip-sep"></div>
-        <div className="ip-chip" onClick={() => navigator.clipboard.writeText('00000')}>
+        <div className="ip-chip" onClick={() => handleCopy('00000', 'port')}>
           <span className="ip-chip-lbl">PORT</span>
           <span className="ip-chip-val">00000</span>
-          <span className="ip-chip-hint">Copy</span>
+          <span className={`ip-chip-hint ${copied === 'port' ? 'ip-copied' : ''}`}>
+            {copied === 'port' ? '✓' : 'Copy'}
+          </span>
         </div>
         <span className="ip-status">⚠ Under Development</span>
       </div>

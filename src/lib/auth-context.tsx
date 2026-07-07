@@ -71,45 +71,63 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe()
   }, [])
 
+  const mapError = (msg: string | null | undefined): string => {
+    if (!msg || msg === '0') return 'Something went wrong. Please check your connection and try again.'
+    if (msg.toLowerCase().includes('invalid login')) return 'Incorrect email or password.'
+    if (msg.toLowerCase().includes('already registered') || msg.toLowerCase().includes('user already')) return 'An account with that email already exists.'
+    if (msg.toLowerCase().includes('row-level security') || msg.toLowerCase().includes('rls')) return 'Account creation failed. Please try again.'
+    if (msg.toLowerCase().includes('unique') || msg.toLowerCase().includes('duplicate')) return 'That username is already taken. Please choose another.'
+    return msg
+  }
+
   const signUp = async (email: string, password: string, username: string, ingameName: string) => {
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          username
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            username: username.toLowerCase(),
+            ingame_name: ingameName
+          }
+        }
+      })
+
+      if (error) {
+        return { error: mapError(error.message) }
+      }
+
+      if (data.user) {
+        const { error: profileError } = await supabase
+          .from('profiles')
+          .upsert({
+            id: data.user.id,
+            username: username.toLowerCase(),
+            ingame_name: ingameName,
+            role: ROLES.PLAYER
+          }, { onConflict: 'id', ignoreDuplicates: true })
+
+        if (profileError) {
+          return { error: mapError(profileError.message) }
         }
       }
-    })
 
-    if (error) {
-      return { error: error.message }
+      return { error: null }
+    } catch {
+      return { error: 'Connection error. Please try again.' }
     }
-
-    if (data.user) {
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .insert({
-          id: data.user.id,
-          username: username.toLowerCase(),
-          ingame_name: ingameName,
-          role: ROLES.PLAYER
-        })
-
-      if (profileError) {
-        return { error: profileError.message }
-      }
-    }
-
-    return { error: null }
   }
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-    if (error) {
-      return { error: error.message }
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password })
+      if (error) {
+        return { error: mapError(error.message) }
+      }
+      return { error: null }
+    } catch {
+      return { error: 'Connection error. Please try again.' }
     }
-    return { error: null }
   }
 
   const signOut = async () => {

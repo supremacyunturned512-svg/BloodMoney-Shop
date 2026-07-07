@@ -295,6 +295,11 @@ nav {
   color: #777;
 }
 
+.ip-chip-hint.ip-copied {
+  color: #2ecc71 !important;
+  font-weight: 700;
+}
+
 .ip-sep {
   width: 1px;
   height: 14px;
@@ -1161,11 +1166,35 @@ nav {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  transition: transform 0.18s;
+  transition: transform 0.18s, box-shadow 0.22s;
 }
 
 .upg-row:hover {
   transform: translateY(-3px);
+}
+
+.upg-row.upg-teal:hover {
+  box-shadow: 0 14px 36px rgba(26, 188, 156, 0.22);
+}
+
+.upg-row.upg-purple:hover {
+  box-shadow: 0 14px 36px rgba(155, 89, 182, 0.22);
+}
+
+.upg-row.upg-gradient:hover {
+  box-shadow: 0 14px 36px rgba(231, 76, 60, 0.22);
+}
+
+.upg-row.upg-blue:hover {
+  box-shadow: 0 14px 36px rgba(52, 152, 219, 0.22);
+}
+
+.upg-row.upg-green:hover {
+  box-shadow: 0 14px 36px rgba(46, 204, 113, 0.22);
+}
+
+.upg-row.upg-gold:hover {
+  box-shadow: 0 14px 36px rgba(200, 160, 64, 0.22);
 }
 
 .upg-from,
